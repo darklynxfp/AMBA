@@ -18,8 +18,8 @@ Usage
 Pull from docker hub and run:
 
 ```sh
-$ docker pull devkekops/checkkarlmarx
-$ docker run -v <path_to_apk_or_ipa>:/mount devkekops/checkkarlmarx /mount
+$ docker build .
+$ docker run -v <path_to_apk_or_ipa>:/mount amba /mount
 ```
 
 It will generate ```report.html``` in ```<path_to_apk_or_ipa>``` folder.
