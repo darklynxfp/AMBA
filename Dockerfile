@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-glibc
+FROM arm64v8/alpine
 
 WORKDIR /app
 COPY checkkarlmarx.py requirements.txt androidtemplate.html iostemplate.html ./
@@ -8,11 +8,13 @@ RUN apk update \
     && apk add --no-cache curl \
     && apk add --no-cache unzip \
     && apk add --no-cache openjdk8-jre \
-    && apk add --no-cache bash
+    && apk add --no-cache bash \
+    && apk add --no-cache python3
 
-RUN apk add --no-cache python3 \
+RUN rm /usr/lib/python3.*/EXTERNALLY-MANAGED \
     && python3 -m ensurepip \
     && pip3 install --upgrade pip setuptools \
+    && pip3 install --no-cache-dir -r requirements.txt \
     && rm -r /usr/lib/python*/ensurepip \
     && if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi \
     && if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi \
@@ -29,6 +31,5 @@ RUN curl -LO https://dl.google.com/android/repository/build-tools_r29.0.2-linux.
     && rm -rf build-tools \
     && chmod +x /usr/local/bin/aapt
 
-RUN pip install --no-cache-dir -r requirements.txt
 
 ENTRYPOINT ["python", "checkkarlmarx.py"]
