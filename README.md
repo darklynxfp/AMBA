@@ -15,10 +15,19 @@ CheckKarlMarx good at finding several things:
 Usage
 -------------
 
-Pull from docker hub and run:
+Build image from dockerfile and run:
 
+Build for ARM architecture:
 ```sh
-$ docker build .
+$ docker build . --build-arg ARCH=arm64v8/
+```
+
+Build for AMD64 architecture:
+```sh
+$ docker build . --build-arg ARCH=amd64/
+```
+Run:
+```sh
 $ docker run -v <path_to_apk_or_ipa>:/mount amba /mount
 ```
 
