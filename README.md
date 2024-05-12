@@ -17,12 +17,12 @@ Usage
 
 Build image from dockerfile and run:
 
-Build for ARM architecture:
+for ARM architecture:
 ```sh
 $ docker build . --build-arg ARCH=arm64v8/
 ```
 
-Build for AMD64 architecture:
+for AMD64 architecture:
 ```sh
 $ docker build . --build-arg ARCH=amd64/
 ```
