@@ -1,5 +1,4 @@
-FROM arm64v8/alpine
-
+FROM ${ARCH}alpine:3.19
 WORKDIR /app
 COPY checkkarlmarx.py requirements.txt androidtemplate.html iostemplate.html ./
 
@@ -30,6 +29,5 @@ RUN curl -LO https://dl.google.com/android/repository/build-tools_r29.0.2-linux.
     && rm -f build-tools_r29.0.2-linux.zip \
     && rm -rf build-tools \
     && chmod +x /usr/local/bin/aapt
-
 
 ENTRYPOINT ["python", "checkkarlmarx.py"]
